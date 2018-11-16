@@ -10,6 +10,7 @@ class Inputs extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addTransaction(this.descInput.current.value, this.amountInput.current.value, this.typeInput.current.value);
+        alert('The transaction is successfully added into your account.');
         // set default prop of type to 'income'
         e.currentTarget.reset();
     }

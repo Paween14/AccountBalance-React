@@ -42,7 +42,7 @@ const Main = ({ transactions, addCommas, checkZero, removeTransaction, totalInco
                     <tfoot>
                         {/* <!-- Information of the total of incomes, expenses, and balance --> */}
                         <Totals 
-                            transactions={ transactions }
+                            totalBalance={ addCommas(transactions.reduce((previous, next) => previous + next.net, 0 )) }
                             totalIncome={ addCommas(totalIncome()) }
                             totalExpense={ addCommas(totalExpense()) }
                         />
