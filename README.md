@@ -1,3 +1,5 @@
+# AccountBalance-React
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This account balance website is created by using Javascript, React and localStorage. The websites functionalities include transaction input (income/expense) and transaction detail input, thus enabling to keep track of account activities.
