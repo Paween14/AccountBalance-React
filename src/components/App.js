@@ -7,6 +7,9 @@ class App extends Component {
 
   state = {
     transactions: [],
+    description: '',
+    amount: '',
+    type: 'income'
   }
 
   componentDidMount() {
@@ -51,7 +54,10 @@ class App extends Component {
   }
 
   checkZeroAmount = (value) => {
-    if ( value === 0 ) {
+    // console.log(value === 0.00); ----> will return false because 'value' is string now
+    // console.log(typeof value);  ---> it's string which is returned from .toFixed()
+    
+    if ( value === '0.00' ) {
       return '-';
     } else {
       return value;
@@ -59,18 +65,35 @@ class App extends Component {
   }
 
   totalIncome = () => {
-    let totalIncome = this.state.transactions.reduce( (previous, next) => previous + next.income, 0 );
-    return totalIncome;
+    let totalIncome = this.state.transactions.reduce( (previous, next) => previous + next.income, 0 );  
+    return totalIncome.toFixed(2);
   } 
 
   totalExpense = () => {
     let totalExpense = this.state.transactions.reduce( (previous, next) => previous + next.expense, 0 );
-    return totalExpense;
+    return totalExpense.toFixed(2);
+  }
+
+  handleChange = e => {
+    let value = e.target.value;
+    let name = e.target.name;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleReformat = () => {
+    this.setState({
+      description: '',
+      amount: '',
+      type: 'income'
+    });
   }
 
   handleAddTransaction = (description, amount, type) => {
-    const incomeAmount = (type === 'income') ? parseInt(amount) : 0 ;
-    const expenseAmount = (type === 'expense') ? parseInt(amount) : 0 ;
+    const incomeAmount = (type === 'income') ? parseFloat(amount) : 0 ;
+    const expenseAmount = (type === 'expense') ? parseFloat(amount) : 0 ;
     let accumBalance = this.state.transactions.reduce((previous, next) => previous + next.net, 0 );
 
     this.setState( prevState => {
@@ -126,6 +149,11 @@ class App extends Component {
         <Header 
           icon="fas fa-user-circle"
           title="Account Balance"
+          description={ this.state.description }
+          amount={ this.state.amount }
+          type={ this.state.type }
+          onChange={ this.handleChange }
+          reformat={ this.handleReformat }
           addTransaction={ this.handleAddTransaction }
           addCommas={ this.numberWithCommas }
           transactions={ this.state.transactions }

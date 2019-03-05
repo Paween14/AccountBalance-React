@@ -26,7 +26,7 @@ body {
   padding: 30px 40px;
 } */
 header {
-  background-color: #2c3e50;
+  background-color: #363635;
   font-family: 'Open Sans', sans-serif;
   padding: 30px 10%;
 }
@@ -85,17 +85,24 @@ input[type="submit"] {
   border: none;
   border-radius:5px;
   box-shadow: 0 2px #95a5a6;
-  background-color: #5aac7c;
+  /* background-color: #5aac7c; */
+  background-color: #C7D3DD;
 }
 
 input[type="submit"]:hover {
-  background-color: #2ecc71;
+  /* background-color: #2ecc71; */
+  background-color: rgb(158, 167, 173);
 }
 
 input[type="submit"]:active {
-  background-color: #2ecc71;
+  /* background-color: #2ecc71; */
+  background-color: rgb(158, 167, 173);
   /* box-shadow: 0 5px #95a5a6; */
   transform: translateY(2px);
+}
+
+input[type]:required {
+  border: inherit;
 }
 
 /* ======================= Table part ======================= */
@@ -126,7 +133,10 @@ tfoot tr {
 
 th {
   /* background-color: rgb(93, 102, 64); */
-  background-color:#e28a25;
+  /* background-color:#e28a25; */
+  /* background-color: #BAD1CD; */
+  /* background-color: #D3D0CB; */
+  background-color: #8cada7;
   border-bottom: 2px solid rgb(100, 99, 99);
   font-size: 21px;
 }
@@ -148,11 +158,17 @@ tbody tr td:nth-child(2) {
 }
 
 .income-bg {
-  background-color: rgba(86, 194, 122, 0.35)
+  /* background-color: rgba(126, 161, 107, 0.63); */
+  /* background-color: rgba(187, 255, 41, 0.466); */
+  /* background-color: rgba(25, 133, 99, 0.356); */
+  /* background-color: #D3EFBD; */
+  background-color: #D1FFD7;
 }
 
 .expense-bg {
-  background-color: rgba(241, 72, 72, 0.3)
+  /* background-color: rgba(241, 72, 72, 0.3) */
+  /* background-color: rgba(214, 69, 81, 0.301); */
+  background-color: #EAC9C1;
 }
 
 .bin-icon {

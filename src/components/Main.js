@@ -31,9 +31,9 @@ const Main = ({ transactions, addCommas, checkZero, removeTransaction, totalInco
                                 date={ transaction.date }
                                 description={ transaction.description }
                                 type={ transaction.type }
-                                income={ addCommas(checkZero(transaction.income)) }
-                                expense={ addCommas(checkZero(transaction.expense)) }
-                                balance={ addCommas(checkZero(transaction.balance)) }
+                                income={ addCommas(checkZero(transaction.income.toFixed(2))) }
+                                expense={ addCommas(checkZero(transaction.expense.toFixed(2))) }
+                                balance={ addCommas(checkZero(transaction.balance.toFixed(2))) }
                                 removeTransaction={ removeTransaction }
                             />
                         )}
@@ -42,7 +42,7 @@ const Main = ({ transactions, addCommas, checkZero, removeTransaction, totalInco
                     <tfoot>
                         {/* <!-- Information of the total of incomes, expenses, and balance --> */}
                         <Totals 
-                            totalBalance={ addCommas(transactions.reduce((previous, next) => previous + next.net, 0 )) }
+                            totalBalance={ addCommas((transactions.reduce((previous, next) => previous + next.net, 0).toFixed(2))) }
                             totalIncome={ addCommas(totalIncome()) }
                             totalExpense={ addCommas(totalExpense()) }
                         />

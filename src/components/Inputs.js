@@ -3,43 +3,55 @@ import React, { Component } from 'react';
 class Inputs extends Component {
 
 
-    descInput = React.createRef();
+/*     descInput = React.createRef();
     amountInput = React.createRef();
-    typeInput = React.createRef();
+    typeInput = React.createRef(); */
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addTransaction(this.descInput.current.value, this.amountInput.current.value, this.typeInput.current.value);
-        alert('The transaction is successfully added into your account.');
-        // set default prop of type to 'income'
-        e.currentTarget.reset();
+        if ((this.props.description === '') === true && (this.props.amount === '') === false) {
+            alert('Please fill in the transaction description.');
+        } else if ((this.props.description === '') === false && (this.props.amount === '') === true) {
+            alert('Please fill in the amount of your transaction.');
+        } else if ((this.props.description === '') === true && (this.props.amount === '') === true) {
+            alert('Please fill in your transaction details before adding.');
+        } else {
+            this.props.addTransaction(this.props.description, this.props.amount, this.props.type);
+            alert('The transaction is successfully added into your account.');
+            this.props.reformat();
+        }
     }
 
     render() {
-        // const { addTransaction } = this.props;
+        const { description, amount, type, onChange } = this.props;        
 
         return (
             <form className="adding-transaction" onSubmit={ this.handleSubmit }>
                 <input 
                     type="text" 
-                    className="description" 
-                    ref={ this.descInput}
+                    name="description"
+                    className="description"
+                    value={ description } 
+                    onChange={ onChange }
                     placeholder="Description" 
-                    // pattern="[A-Za-z0-9]*" 
+                    // pattern="[A-Za-z0-9]*"
                 />
 
                 <input 
                     type="text" 
-                    className="amount" 
-                    ref={ this.amountInput}
+                    name="amount"
+                    className="amount"
+                    value={ amount } 
+                    onChange={ onChange }
                     placeholder="Amount" 
-                    pattern="[0-9]*" 
+                    pattern="^[0-9]*\.?[0-9]{1,2}$" 
                 />
 
                 <select 
-                    name="type-of-transaction" 
+                    name="type" 
                     id="type"
-                    ref={ this.typeInput } 
+                    value={ type }
+                    onChange={ onChange }
                     required
                 >
                     <option value="income">Income</option>
@@ -47,9 +59,8 @@ class Inputs extends Component {
                 </select>
 
                 <input 
-                    className="add-btn" 
                     type="submit" 
-                    value="Submit" 
+                    value="Add" 
                 />
             </form>
         );

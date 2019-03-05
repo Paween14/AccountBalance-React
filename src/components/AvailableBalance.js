@@ -13,7 +13,7 @@ const AvailableBalance = ({ currency, addCommas, transactions }) => {
 
     return (
         <div className="available-bal mb-1">
-            <h2>{ currency } <span className="current-balance">{ addCommas(balance) }</span></h2>
+            <h2>{ currency } <span className="current-balance">{ addCommas(balance.toFixed(2)) }</span></h2>
             <p>Available balance</p>
         </div>
     );
